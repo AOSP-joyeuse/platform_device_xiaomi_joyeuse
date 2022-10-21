@@ -16,20 +16,28 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
+# All components inherited here go to system image
+$(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
+
+# All components inherited here go to system_ext image
+$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_system_ext.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_system_ext.mk)
+
+# All components inherited here go to product image
+$(call inherit-product, vendor/hentai/build/product/hentai_product.mk)
+
+# All components inherited here go to vendor image
+$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_vendor.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
+
 # Inherit from joyeuse device tree
 $(call inherit-product, device/xiaomi/joyeuse/device.mk)
 
-# Inherit Android Open Source Project configuration
-$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
-
-# Bootanimation
-TARGET_BOOT_ANIMATION_RES := 1080
-
 # Device identity configuration
-PRODUCT_NAME := aosp_joyeuse
+PRODUCT_NAME := joyeuse
 PRODUCT_DEVICE := joyeuse
-PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := Redmi Note 9 Pro
+PRODUCT_BRAND := Xiaomi
 PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
